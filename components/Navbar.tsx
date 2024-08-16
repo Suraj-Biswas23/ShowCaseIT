@@ -6,39 +6,46 @@ import AuthProviders from './AuthProviders';
 const Navbar = () => {
   const session = {};
   return (
-    <nav className="flexBetween navbar">
+    <>
+      {/* Add the "In Development" text */}
+      <div className="w-full text-center py-2 bg-yellow-200 text-gray-800">
+        In Development
+      </div>
+
+      <nav className="flexBetween navbar">
         <div className="flex-1 flexStart gap-10">
-            <Link href="/">
+          <Link href="/">
             <Image 
-                src="/logo.svg"
-                width={115}
-                height={43}
-                alt="ShowCaseIt"
+              src="/logo.svg"
+              width={150}
+              height={43}
+              alt="ShowCaseIt"
             />
-            </Link>
-            <ul className="xl:flex hidden text-small gap-7">
-              {NavLinks.map((link) => (
-                <Link href={link.href} key={link.key}>
-                  {link.text}
-                </Link>
-              ))}
-            </ul>
+          </Link>
+          <ul className="xl:flex hidden text-small gap-7">
+            {NavLinks.map((link) => (
+              <Link href={link.href} key={link.key}>
+                {link.text}
+              </Link>
+            ))}
+          </ul>
         </div>
 
         <div className="flexCenter gap-4">
-              {session ? (
-                <>
-                UserPhoto
-                <Link href="/create-poject">
-                  Share Work
-                </Link>
-                </>
-              ) : (
-                <AuthProviders/>
-              )}
+          {session ? (
+            <>
+              UserPhoto
+              <Link href="/create-poject">
+                Share Work
+              </Link>
+            </>
+          ) : (
+            <AuthProviders/>
+          )}
         </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 
-export default Navbar
+export default Navbar;
