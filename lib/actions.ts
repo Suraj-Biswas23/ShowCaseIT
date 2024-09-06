@@ -57,9 +57,7 @@ export const createNewProject = async (form: ProjectForm, creatorId: string, tok
       input: { 
         ...form, 
         image: imageUrl.url, 
-        createdBy: { 
-          link: creatorId 
-        }
+        createdBy: creatorId 
       }
     };
 
@@ -105,14 +103,17 @@ export const getProjectDetails = (id: string) => {
   return makeGraphQLRequest(getProjectByIdQuery, { id });
 };
 
-export const createUser = (name: string, email: string, avatarUrl: string) => {
+export const createUser = (name: string, email: string, avatarUrl: string, description?: string, githubUrl?: string, linkedinUrl?: string) => {
   client.setHeader("x-api-key", apiKey);
 
   const variables = {
     input: {
       name: name,
       email: email,
-      avatarUrl: avatarUrl
+      avatarUrl: avatarUrl,
+      description: description,  
+      githubUrl: githubUrl,
+      linkedinUrl: linkedinUrl
     },
   };
   
