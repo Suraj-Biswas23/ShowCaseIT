@@ -39,7 +39,7 @@ const Project = mongodb.model('Project', {
 
 const jwt = auth.JWT({
   issuer: 'grafbase',
-  secret:  g.env('NEXTAUTH_SECRET')
+  secret:  g.env('NEXTAUTH_SECRET'),
 })
 
 g.datasource(mongodb)

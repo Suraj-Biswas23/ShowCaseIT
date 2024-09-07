@@ -39,22 +39,14 @@ export const deleteProjectMutation = `
 `;
 
 export const createUserMutation = `
-  mutation CreateUser($input: UserCreateInput!) {
-    mongoDB {
-      userCreate(input: $input) {
-        user {
-          name
-          email
-          avatarUrl
-          description
-          githubUrl
-          linkedinUrl
-          id
+    mutation CreateUser($input: UserCreateInput!) {
+      mongoDB {
+        userCreate(input: $input) {
+          insertedId 
         }
       }
     }
-  }
-`;
+  `;
 
 export const getProjectsQuery = `
   query getProjects($category: String, $endCursor: String) {
@@ -117,26 +109,18 @@ export const getUserQuery = `
 `;
 
 export const getProjectsOfUserQuery = `
-  query getUserProjects($id: ID!, $last: Int = 4) {
-    mongoDB {
-      user(by: { id: $id }) {
-        id
-        name
-        email
-        description
-        avatarUrl
-        githubUrl
-        linkedinUrl
-        projects(last: $last) {
-          edges {
-            node {
-              id
-              title
-              image
-            }
-          }
-        }
-      }
+query getUserProjects($id: ID!) {
+  mongoDB {
+    user(by: { id: $id }) {
+      id
+      name
+      email
+      description
+      avatarUrl
+      githubUrl
+      linkedinUrl
+      projectIds
     }
   }
+}
 `;
